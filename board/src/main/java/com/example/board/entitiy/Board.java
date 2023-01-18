@@ -20,7 +20,7 @@ public class Board extends BaseEntity{  //Member의 Email값 (P.K) 를 F.K 로 �
 
     private String content;
 
-    @ManyToOne(fetch=FetchType.LAZY)//Lazy"
+    @ManyToOne(fetch=FetchType.LAZY , cascade = CascadeType.PERSIST)//Lazy"
     private Member writer; // join 에서 사용
     public void changeTitle(String title){
         this.title=title;
