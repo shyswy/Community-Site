@@ -4,6 +4,8 @@
 
 Spring framework와 Spring JPA, Spring Data JPA, Querydsl, Rest Method를 사용한 댓글 기능 처리를 구현하였습니다.
 
+BoardApplication 실행 후, “localhost:8080/board/list” 와 같은 url을 통하여 게시물 목록화면으로 진입하여 사용합니다.
+
 # Simple Overview
 
 ## 게시물 목록 화면
@@ -70,15 +72,15 @@ getPageable 메소드로 구성되어 있다.
 
 ### PageResultDTO
 
-모든 필드 대상을 생성하고, 접근자를 만들어준다. 유동적인 사용을 위해 제네릭 타입을 통해 DTO와
+모든 필드 대상을 생성하고, 접근자를 만들어-다. 유동적인 사용을 위해 제네릭 타입을 통해 DTO와
 
 임의의 Entity 간의 중간다리 역할을 수행한다.
 
-기본 데이터
+**기본 데이터**
 
 ![Untitled](README%20f44be134ab3d4db881e9530ad97dcd2d/Untitled%2010.png)
 
-메소드
+**메소드**
 
 Java Stream의 map, collect를 통해 파라미터로 들어온 해당 엔티티의 적절한 EntityToDTO 함수를 받은 뒤, DTO로 변환하여 저장한 뒤, 페이지 정보를 생성한다.
 
@@ -176,10 +178,10 @@ Result에 정보를 담는 Query
 
 PageResultDTO의 생성자.  2개의 파라미터
 
-- 변화시킬 Object[] ( 쿼리 결과에 따라 조정 가능 >> 확장성!)
+- 변화시킬 Object[] ( 쿼리 결과에 따라 조정 가능 → 확장성을 가진다)
 - 그리고 그 Object를 DTO로 변환시키는 함수
 
-이 두가지를 동적으로 받아서, 모든 Entity들의 Service 계층에서 가변적인 Query의 결과 값을, 가변적인 DTO 타입으로 유동적이게 변환할 수 있게 만듬.
+이 두가지를 동적으로 받아서, 모든 Entity들의 Service 계층에서 가변적인 Query의 결과 값을, 가변적인 DTO 타입으로 유동적이게 변환할 수 있게 만든다.
 
 ![Untitled](README%20f44be134ab3d4db881e9530ad97dcd2d/Untitled%2025.png)
 
@@ -217,7 +219,7 @@ Spring data JPA에 들어있는 쿼리 메소드인 findById는 Optional. 따라
 
 ![Untitled](README%20f44be134ab3d4db881e9530ad97dcd2d/Untitled%2031.png)
 
-List.html에서 로드할 page 정보를 미리 세팅, 이후 “/board/list” 즉 board 디렉토리 안의 list html 리턴 -> list.html로 이동.
+List.html에서 로드할 page 정보를 미리 세팅, 이후 “/board/list” 즉 board 디렉토리 안의 list html 리턴 →  list.html로 이동.
 
 url에 page 정보가 들어오면, 페이지에 대한 pageRequestDTO가 수집된다.
 
@@ -407,7 +409,7 @@ Reply에 대한 기본적인 CRUD 메소드를 정의 한다. read와 delete는 
 
 ### Reply Controller(Rest Method)
 
-ReplyController
+**ReplyController**
 
 ![Untitled](README%20f44be134ab3d4db881e9530ad97dcd2d/Untitled%2052.png)
 
@@ -422,13 +424,13 @@ ReplyController
 
 조회 화면에서 사용자가 해당 게시물의 댓글 수를 파악하고, 댓글의 숫자를 클릭할 시, Ajax로 데이터를 처리한다.
 
-Read.html 수정
+**Read.html 수정**
 
 댓글 추가, 댓글 조회 버튼을 추가한다.
 
 ![Untitled](README%20f44be134ab3d4db881e9530ad97dcd2d/Untitled%2054.png)
 
-JavaScript
+**JavaScript**
 댓글 조회를 담당하는 replyList에 대한 버튼 클릭 이벤트 발생 시, getListByBoard 가 get 방식으로 매핑되는 /replies/board/ 의 주소에 게시물 번호인 bno를 추가하여 전달하고, 그 결과 값으로 반환되는 JSON 데이터를 getJSON으로 얻고 정보를 렌더링 한다.
 
 ![Untitled](README%20f44be134ab3d4db881e9530ad97dcd2d/Untitled%2055.png)
