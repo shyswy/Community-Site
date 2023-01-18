@@ -20,8 +20,4 @@ public class Member extends BaseEntity{  //BaseEntity -> email을 아이디 대�
 
     private String name;
 
-
-
-
-
 }

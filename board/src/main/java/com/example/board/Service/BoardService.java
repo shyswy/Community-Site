@@ -7,9 +7,7 @@ import com.example.board.entitiy.Board;
 import com.example.board.entitiy.Member;
 
 public interface BoardService {
-
     Long register(BoardDTO dto);
-
     void modify(BoardDTO dto);
     default Board DtoToEntity(BoardDTO dto){
         Member member=Member.builder()
@@ -39,8 +37,6 @@ public interface BoardService {
         return boardDTO;
     }
     PageResultDTO<BoardDTO,Object[]> getList(PageRequestDTO pageRequestDTO);
-
     BoardDTO get(Long bno);
-
     void deleteBoardWithReply(Long bno);
 }

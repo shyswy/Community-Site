@@ -11,21 +11,14 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board,Long>, SearchBoardRepository { //엔티티, PK 타입> (findbyID의 파라미터 타입을 정의한다)
-
     @Query("select b,w from Board b left join b.writer w where b.bno=:bno")
     Object getBoardWithWriter(@Param("bno") Long bno); //해당 함수로 위의 쿼리문 트리거.
     // Board   :   Member(Writer)
     //  다      대    1
-
     @Query("select b,r from Board b left join Reply r on r.board=b where b.bno=:bno")
     List<Object[]> getBoardWithReply(@Param("bno") Long bno);
     // Board   :    Reply
     //   1     대    다     >>on
-
-
-
-
-
     @Query(value ="SELECT b, w,count(r) "+
             " FROM Board b" +
             " LEFT JOIN b.writer w " +
@@ -38,7 +31,6 @@ public interface BoardRepository extends JpaRepository<Board,Long>, SearchBoardR
     //목록 페이지 하나당 pageable 기반 size,sort order로 board객체, 해당 board의 작성자(writer), 해당 board에 대한 reply 수
     //를 되돌려준다. ( 목록 페이지 처리용)
     // Page의 각 요소 Object[] 안에는   slect에 위치한 Board,writer(Member) count(r) [Long]  을 각각 저장
-
     @Query(value="SELECT b,w, count(r) " +
             " FROM Board b LEFT JOIN b.writer w " +
             " LEFT OUTER JOIN Reply r ON r.board = b" +
@@ -47,7 +39,4 @@ public interface BoardRepository extends JpaRepository<Board,Long>, SearchBoardR
             countQuery ="SELECT count(b) FROM Board b")
     Object getBoardByBno(@Param("bno") Long bno);
     //특정 게시무에 대한 writer, reply 수 정보.
-
-
-
 }

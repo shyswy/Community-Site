@@ -84,4 +84,15 @@ public class BoardRepositoryTests {
     public void testSearch1(){
         boardRepository.search1();
     }
+    @Test
+    public void testSearchPage(){
+        PageRequest pageable = PageRequest.of(0, 10, Sort.by("bno")
+                .descending()
+                .and(Sort.by("title").ascending())
+        );
+        Page<Object[]> result = boardRepository.searchPage("t", "1", pageable);//타입: 제목,내용, 작성자 (T,C,W)
+    }
+
+
+
 }
