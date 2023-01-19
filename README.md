@@ -6,6 +6,10 @@ Spring framework와 Spring JPA, Spring Data JPA, Querydsl, Rest Method를 사용
 
 BoardApplication 실행 후, “localhost:8080/board/list” 와 같은 url을 통하여 게시물 목록화면으로 진입하여 사용합니다.
 
+AWS를 통한 배포를 진행 중이고 주소는 아래와 같습니다.
+
+[http://13.125.105.236/](http://13.125.105.236/)
+
 # Simple Overview
 
 ## 게시물 목록 화면

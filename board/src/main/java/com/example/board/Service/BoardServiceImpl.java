@@ -6,6 +6,7 @@ import com.example.board.DTO.PageResultDTO;
 import com.example.board.entitiy.Board;
 import com.example.board.entitiy.Member;
 import com.example.board.repository.BoardRepository;
+import com.example.board.repository.MemberRepository;
 import com.example.board.repository.ReplyRepository;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,45 @@ public class BoardServiceImpl implements BoardService{
     //@Data 안의 requiredArgConstruct로 Autowired를 일일이 해줄 필요 없이 생성자 주입 가능
     private final BoardRepository boardRepository;
     private final ReplyRepository replyRepository;
+
+    private final MemberRepository memberRepository;
+
+    @Override
+    public Board DtoToEntity(BoardDTO dto){
+        Optional<Member> writer = memberRepository.findById(dto.getWriterEmail());
+        Member member;
+        if(writer.isPresent()){ //존재하는 작성자 정보를 로드
+            member=writer.get();
+        }
+        else { //새로운 작성자로 생성
+            member = Member.builder()
+                    .email(dto.getWriterEmail())
+                    .name(dto.getWriterName())
+                    .build();
+        }
+        Board board=Board.builder()
+                .bno(dto.getBno())
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .writer(member)
+                .build();
+        return board;
+
+    }
+    @Override
+   public BoardDTO EntityToDTO(Board board,Member writer, Long replyCount){
+        BoardDTO boardDTO=BoardDTO.builder()
+                .bno(board.getBno())
+                .title(board.getTitle())
+                .content(board.getContent())
+                .regDate(board.getRegDate())
+                .modDate(board.getModDate())
+                .writerName(writer.getName())
+                .writerEmail(writer.getEmail())
+                .replyCount(replyCount)
+                .build();
+        return boardDTO;
+    }
 
     @Override
     public Long register(BoardDTO dto) {

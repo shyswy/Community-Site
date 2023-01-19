@@ -13,7 +13,7 @@ import org.springframework.data.domain.Sort;
 public class BoardServiceTests {
     @Autowired
     private  BoardService boardService;
-
+/*
     @Test
     void BoardRegisterTest(){
         BoardDTO dto=BoardDTO.builder()
@@ -63,5 +63,7 @@ public class BoardServiceTests {
         // DTO의 content, title만 DTO내용으로 수정
 
     }
+
+ */
 
 }

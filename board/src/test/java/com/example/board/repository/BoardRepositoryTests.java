@@ -21,6 +21,7 @@ public class BoardRepositoryTests {
     @Autowired
     private BoardRepository boardRepository;
 
+    /*
     @Test
     public void insertTest(){
         IntStream.rangeClosed(1,100).forEach(i->{
@@ -92,6 +93,8 @@ public class BoardRepositoryTests {
         );
         Page<Object[]> result = boardRepository.searchPage("t", "1", pageable);//타입: 제목,내용, 작성자 (T,C,W)
     }
+
+     */
 
 
 

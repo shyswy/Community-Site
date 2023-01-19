@@ -4,7 +4,7 @@
 <!--각 수정 삭제 는 새로운 페이지로 mapping 하여 처리. 수정, 삭제는 Post, 다시 목록으로 이동은 Get -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+<th:block th:replace="~{layout/basic :: setContent(~{this::content} )}">
 
   <th:block th:fragment="content">
 

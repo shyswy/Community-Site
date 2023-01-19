@@ -91,6 +91,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
                         break;
                     case "c":
                         conditionalBuilder.or(board.content.contains(keyword));
+                        break;
                 }
             }
             booleanBuilder.and(conditionalBuilder);// 키워드 검색 결과 and 전체 board -> 키워드 검색으로 나온 board

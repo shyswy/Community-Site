@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BoardController {
     private final BoardService boardService;
 
+
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model){
         //스프링 MVC 는 파라미터를 자동으로 수집한다. 화면쪽에서 page, size 정보를 url에 담아 보내면

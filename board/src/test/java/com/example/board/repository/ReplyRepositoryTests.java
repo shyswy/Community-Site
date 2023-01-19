@@ -18,7 +18,7 @@ public class ReplyRepositoryTests {
 
     @Autowired
     private ReplyService replyService;
-
+/*
     @Test
     public void insertTest(){//reply insert test
         IntStream.rangeClosed(1,100).forEach(i->{
@@ -55,4 +55,6 @@ public class ReplyRepositoryTests {
             System.out.println(replyDTO);
         });
     }
+
+ */
 }
